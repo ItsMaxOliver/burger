@@ -1,36 +1,40 @@
 <h1>BURGERS!</h1>
 
-<h2>Burgers that are waiting to be devoured!</h2>
+<div class="container">
+    <h2>Burgers that are waiting to be devoured!</h2>
 
-<ul>
-    {{#each burgers}} 
-        {{#unless devoured}} 
-            <li>
-                {{burger goes here}} {{devour it button goes here}}
-            </li>
-        {{/unless}} 
-    {{/each}}
-</ul>
+    <ul class="list-unstyled">
+        {{#each burgers}} 
+            {{#unless devoured}} 
+                {{name}} 
+                <button class="change-devoured" data-burgerid="{{this.id}}" data-newdevoured="{{devoured}}">Devour!</button> <br>
+            {{/unless}} 
+        {{/each}}
+    </ul>
+</div>
 
-<h2>Burgers that have been devoured</h2>
+<div class="container">
+    <h2>Burgers that have been devoured</h2>
 
-<ul>
-    {{#each burgers}} 
-        {{#if devoured}}
-            <li>
-                {{devoured burger goes here}}
-            </li>
-        {{/if}} 
-    {{/each}}
-</ul>
+    <ul class="list-unstyled">
+        {{#each burgers}} 
+            {{#if devoured}}
+                {{name}} 
+                <button class="change-devoured" data-burgerid="{{this.id}}" data-newdevoured="{{this.devoured}}">Throw Up!</button> <br>
+            {{/if}} 
+        {{/each}}
+    </ul>
+</div>
 
-<h2>Add a Burger</h2>
-<form class="create-form">
+<div class="container">
+    <h2>Add a Burger!</h2>
+    <form id="addburger">
 
     <div class="form-group">
-        <label for="name">Burger Name:</label>
-        <input type="text" id="name" name="name">
+        <label for="burger">Burger Name:</label>
+        <input type="text" id="burger" name="burger">
     </div>
 
     <button type="submit">Add Burger</button>
-</form>
+    </form>
+</div>
