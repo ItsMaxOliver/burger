@@ -25,7 +25,7 @@ $(function() {
     $("#addburger").on("submit", function(event) {
         event.preventDefault();
         var newBurger = {
-            burger: $("#burger").val().trim(),
+            burger: $("#burger").val().trim()
         };
       
         $.ajax("/api/burgers", {
