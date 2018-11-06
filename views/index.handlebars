@@ -8,7 +8,7 @@
             {{#each burgers}} 
                 {{#unless devoured}} 
                     {{name}} 
-                    <button class="change-devoured" data-burgerid="{{this.id}}" data-newdevoured="{{devoured}}">Devour!</button> <br>
+                    <button class="change-devoured" data-burgerid="{{this.id}}" data-burgername="{{this.name}}" data-newdevoured="{{devoured}}">Devour!</button> <br>
                 {{/unless}} 
             {{/each}}
         </ul>
@@ -21,7 +21,7 @@
             {{#each burgers}} 
                 {{#if devoured}}
                     {{name}} 
-                    <button class="change-devoured" data-burgerid="{{this.id}}" data-newdevoured="{{this.devoured}}">Throw Up!</button> <br>
+                    <button class="change-devoured" data-burgerid="{{this.id}}" data-burgername="{{this.name}}" data-newdevoured="{{this.devoured}}">Throw Up!</button> <br>
                 {{/if}} 
             {{/each}}
         </ul>
