@@ -1,19 +1,19 @@
-var connection = require("../config/connection.js");
+const connection = require("../config/connection.js");
 
 function printQuestionMarks(num) {
-    var arr = [];
+    let arr = [];
   
-    for (var i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
       arr.push("?");
     }
     return arr.toString();
 }
 
 function objToSql(ob) {
-    var arr = [];
+    let arr = [];
     
     for (var key in ob) {
-        var value = ob[key];
+        let value = ob[key];
         
         if (Object.hasOwnProperty.call(ob, key)) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
@@ -25,43 +25,30 @@ function objToSql(ob) {
     return arr.toString();
 }
 
-var orm = {
+const orm = {
     selectAll: function (table, callback){
-        var queryString = "SELECT * FROM " + table + ";";
+        let queryString = `SELECT * FROM ${table};`;
         connection.query(queryString, function (err, res) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
+            
             callback(res);
         });
     },
     insertOne: function (table, cols, vals, callback) {
-        var queryString = "INSERT INTO " + table;
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
+        let queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)});`;
         
         connection.query(queryString, vals, function(err, res) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
+
             callback(res);
         });
     },
     updateOne: function (table, objColVals, condition, callback) {
-        var queryString = "UPDATE " + table;
-        queryString += " SET ";
-        queryString += objToSql(objColVals);
-        queryString += " WHERE ";
-        queryString += condition;
+        var queryString = `UPDATE ${table} SET ${objToSql(objColVals)} WHERE ${condition};`;
         
         connection.query(queryString, function (err, res) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
+            
             callback(res);
         });
     }
